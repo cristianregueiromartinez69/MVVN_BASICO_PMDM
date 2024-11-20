@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -35,9 +36,8 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun IU(miViewModel: MyViewModel) {
-    // para que sea mas facil la etiqueta del log
-    // val TAG_LOG = "miDebug"
 
+    val cuentaAtras by miViewModel.cuentaAtrasLiveData.observeAsState(miViewModel.getCuertaAtras())
 
     // botones en horizontal
     Column(
@@ -61,7 +61,7 @@ fun IU(miViewModel: MyViewModel) {
                 Boton(miViewModel, Colores.CLASE_AMARILLO)
             }
             Row {
-                ShowCuentaAtras("hola")
+                ShowCuentaAtras(cuentaAtras)
             }
         }
         // creao boton Start

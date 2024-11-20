@@ -34,10 +34,14 @@ Le tenemos que meter en el onclick del boton de start
 # 5. Si la cuenta atrás llega a uno y el usuario aun no acertó, la app vuelve al estado INICIO
 Dentro del metodo que comprueba si hemos acertado o fallado
 1. tendríamos que meter una condición que implica que si la variable de la cuenta atras está en 1, se vuelva al estado inicial y el usuario tenga que volver a empezar la ronda
+2. Dentro de la curutina hemos metido un metodo para comprobar si la variable ha llegado a 1.
+3. Si ha llegado a 1, volvemos al estado inicial
 
 # 6. Plantea una mejora
 Mejoras que podemos hacer:
-1. Podríamos hacer que la cuenta en vez de llegar a 1 llegue a 0 para que le de más tiempo al usuario
-2. Podríamos hacer algo para darle pistas al usuario, es decir, que si el boton a pulsar es el 1, y pulsa el 4, le decimos que está lejos o cosas así
+1. Podríamos mejorar la cuenta atrás para hacer que llegue al 0 en vez de al 1 y darle más tiempo al usuario
+2. Podríamos hacer que la cuenta se aumente a medida de que el usuario acierte más rapido
+3. Podríamos penalizar con el tiempo de manera que si el usuario falle, la cuenta vaya más rápido
+4. Podríamos hacer a su vez que si el usuario acierta rápido, la cuenta se ralentice en la siguiente ronda
 
 

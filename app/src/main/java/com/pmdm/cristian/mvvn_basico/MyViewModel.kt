@@ -78,21 +78,21 @@ class MyViewModel(): ViewModel() {
     fun estadosAuxiliares() {
         viewModelScope.launch {
             // guardamos el estado auxiliar
-            var estadoAux = EstadosAuxiliares.AUX1
+            var estadoAux = EstadosAuxiliares.AUX1.txt
             // hacemos un cambio a tres estados auxiliares
-            Log.d(TAG_LOG, "estado (corutina): ${estadoAux}")
+            Log.d(TAG_LOG, estadoAux)
             delay(1000)
-            estadoAux = EstadosAuxiliares.AUX2
-            Log.d(TAG_LOG, "estado (corutina): ${estadoAux}")
+            estadoAux = EstadosAuxiliares.AUX2.txt
+            Log.d(TAG_LOG, estadoAux)
             delay(1000)
-            estadoAux = EstadosAuxiliares.AUX3
-            Log.d(TAG_LOG, "estado (corutina): ${estadoAux}")
+            estadoAux = EstadosAuxiliares.AUX3.txt
+            Log.d(TAG_LOG, estadoAux)
             delay(1000)
-            estadoAux = EstadosAuxiliares.AUX4
-            Log.d(TAG_LOG, "estado (corutina): ${estadoAux}")
+            estadoAux = EstadosAuxiliares.AUX4.txt
+            Log.d(TAG_LOG, estadoAux)
             delay(1000)
-            estadoAux = EstadosAuxiliares.AUX5
-            Log.d(TAG_LOG, "estado (corutina): ${estadoAux}")
+            estadoAux = EstadosAuxiliares.AUX5.txt
+            Log.d(TAG_LOG, estadoAux)
         }
     }
 }

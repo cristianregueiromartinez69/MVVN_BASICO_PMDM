@@ -15,8 +15,8 @@ class MyViewModel(): ViewModel() {
     // etiqueta para logcat
     private val TAG_LOG = "miDebug"
 
-    private var _palabraJugadorLiveData = MutableLiveData<String>()
-    val palabraJugadorLiveData : LiveData<String> get() = _palabraJugadorLiveData
+    private var _cuentaAtrasLiveData = MutableLiveData<String>()
+    val cuentaAtrasLiveData : LiveData<String> get() = _cuentaAtrasLiveData
 
     // estados del juego
     // usamos LiveData para que la IU se actualice
@@ -25,7 +25,7 @@ class MyViewModel(): ViewModel() {
 
 
     init {
-
+        _cuentaAtrasLiveData.value = Datos.cuenta
     }
 
 
@@ -102,5 +102,10 @@ class MyViewModel(): ViewModel() {
             estadoAux = EstadosAuxiliares.AUX5.txt
             Log.d(TAG_LOG, estadoAux)
         }
+    }
+
+    fun setCuentaAtras(cuentaAux: String) {
+        Datos.cuenta = cuentaAux
+
     }
 }

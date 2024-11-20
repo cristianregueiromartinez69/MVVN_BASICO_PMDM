@@ -106,6 +106,11 @@ class MyViewModel(): ViewModel() {
             estadoAux = EstadosAuxiliares.AUX5.txt
             setCuentaAtras(estadoAux)
             Log.d(TAG_LOG, estadoAux)
+            delay(1000)
+            estadoAux = EstadosAuxiliares.AUX6.txt
+            setCuentaAtras(estadoAux)
+            Log.d(TAG_LOG, estadoAux)
+            delay(1000)
         }
     }
 

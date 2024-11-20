@@ -83,6 +83,9 @@ class MyViewModel(): ViewModel() {
         }
     }
 
+    /**
+     * metodo para comprobar si la cuenta está en 1 y volver al estado Inicio
+     */
     fun comprobarCuenta(cuentaAtras: String){
         if(cuentaAtras == "1"){
             estadoAux = EstadosAuxiliares.AUX6.txt
@@ -101,7 +104,7 @@ class MyViewModel(): ViewModel() {
             // guardamos el estado auxiliar
             estadoAux = EstadosAuxiliares.AUX1.txt
             setCuentaAtras(estadoAux)
-            // hacemos un cambio a tres estados auxiliares
+            // hacemos un cambio a los estados auxiliares
             Log.d(TAG_LOG, estadoAux)
             delay(1000)
             estadoAux = EstadosAuxiliares.AUX2.txt
@@ -117,12 +120,13 @@ class MyViewModel(): ViewModel() {
             Log.d(TAG_LOG, estadoAux)
             delay(1000)
             estadoAux = EstadosAuxiliares.AUX5.txt
-            comprobarCuenta(estadoAux)
-            setCuentaAtras(estadoAux)
+            comprobarCuenta(estadoAux) //comprobamos si la cuenta está en 1
+            setCuentaAtras(estadoAux) //redibujamos la cuenta atras
             Log.d(TAG_LOG, estadoAux)
             delay(1000)
         }
     }
+
 
     fun setCuentaAtras(cuentaAux: String) {
         Datos.cuenta = cuentaAux

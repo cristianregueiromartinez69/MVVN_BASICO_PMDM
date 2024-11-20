@@ -31,3 +31,13 @@ enum class Estados(val start_activo: Boolean, val boton_activo: Boolean) {
     GENERANDO(start_activo = false, boton_activo = false),
     ADIVINANDO(start_activo = false, boton_activo = true),
 }
+
+/**
+ * Estados auxiliares para corutinas en el ViewModel
+ * @param txt: String nombre del estado
+ */
+enum class EstadosAuxiliares(val txt: String) {
+    AUX1(txt = "aux1"),
+    AUX2(txt = "aux2"),
+    AUX3(txt = "aux3"),
+}

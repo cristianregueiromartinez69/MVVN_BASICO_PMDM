@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
  */
 object Datos {
     var numero = 0
+    var cuenta = ""
 }
 
 /**
@@ -30,4 +31,18 @@ enum class Estados(val start_activo: Boolean, val boton_activo: Boolean) {
     INICIO(start_activo = true, boton_activo = false),
     GENERANDO(start_activo = false, boton_activo = false),
     ADIVINANDO(start_activo = false, boton_activo = true),
+}
+
+/**
+ * Estados auxiliares para corutinas en el ViewModel
+ * @param txt: String nombre del estado
+ */
+enum class EstadosAuxiliares(val txt: String) {
+    AUX1(txt = "5"),
+    AUX2(txt = "4"),
+    AUX3(txt = "3"),
+    AUX4(txt = "2"),
+    AUX5(txt = "1"),
+    AUX6(txt = ""),
+
 }

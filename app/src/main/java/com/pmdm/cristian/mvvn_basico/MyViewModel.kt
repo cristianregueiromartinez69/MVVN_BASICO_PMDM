@@ -6,16 +6,31 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MyViewModel(): ViewModel() {
 
     // etiqueta para logcat
     private val TAG_LOG = "miDebug"
 
+    private var _cuentaAtrasLiveData = MutableLiveData<String>()
+    val cuentaAtrasLiveData : LiveData<String> get() = _cuentaAtrasLiveData
+
+    var estadoAux = EstadosAuxiliares.AUX1.txt
+
     // estados del juego
     // usamos LiveData para que la IU se actualice
     // patron de diseño observer
     val estadoLiveData: MutableLiveData<Estados> = MutableLiveData(Estados.INICIO)
+
+
+    init {
+        _cuentaAtrasLiveData.value = Datos.cuenta
+    }
+
+
 
     // este va a ser nuestra lista para la secuencia random
     // usamos mutable, ya que la queremos modificar
@@ -31,11 +46,13 @@ class MyViewModel(): ViewModel() {
      * crear entero random
      */
     fun crearRandom() {
+        estadosAuxiliares()
         // cambiamos estado, por lo tanto la IU se actualiza
         estadoLiveData.value = Estados.GENERANDO
         _numbers.value = (0..3).random()
         Log.d(TAG_LOG, "creamos random ${_numbers.value} - Estado: ${estadoLiveData.value}")
         actualizarNumero(_numbers.value)
+
     }
 
     fun actualizarNumero(numero: Int) {
@@ -51,18 +68,68 @@ class MyViewModel(): ViewModel() {
      * @return Boolean si coincide TRUE, si no FALSE
      */
     fun comprobar(ordinal: Int): Boolean {
-
-        Log.d(TAG_LOG, "comprobamos - Estado: ${estadoLiveData.value}")
-        return if (ordinal == Datos.numero) {
+        if (ordinal == Datos.numero) {
+            estadoAux = EstadosAuxiliares.AUX6.txt
             Log.d(TAG_LOG, "es correcto")
             estadoLiveData.value = Estados.INICIO
-            Log.d(TAG_LOG, "GANAMOS - Estado: ${estadoLiveData.value}")
-            true
-        } else {
+           return  true
+        }
+
+        else {
+            estadoAux = EstadosAuxiliares.AUX6.txt
             Log.d(TAG_LOG, "no es correcto")
             estadoLiveData.value = Estados.ADIVINANDO
-            Log.d(TAG_LOG, "otro intento - Estado: ${estadoLiveData.value}")
-            false
+           return  false
         }
+    }
+
+    fun comprobarCuenta(cuentaAtras: String){
+        if(cuentaAtras == "1"){
+            estadoAux = EstadosAuxiliares.AUX6.txt
+            Log.d(TAG_LOG, "no es correcto en cuenta atras")
+            estadoLiveData.value = Estados.INICIO
+        }
+
+    }
+
+
+    /**
+     * Corutina que lanza estados auxiliares
+     */
+    fun estadosAuxiliares() {
+        viewModelScope.launch {
+            // guardamos el estado auxiliar
+            estadoAux = EstadosAuxiliares.AUX1.txt
+            setCuentaAtras(estadoAux)
+            // hacemos un cambio a tres estados auxiliares
+            Log.d(TAG_LOG, estadoAux)
+            delay(1000)
+            estadoAux = EstadosAuxiliares.AUX2.txt
+            setCuentaAtras(estadoAux)
+            Log.d(TAG_LOG, estadoAux)
+            delay(1000)
+            estadoAux = EstadosAuxiliares.AUX3.txt
+            setCuentaAtras(estadoAux)
+            Log.d(TAG_LOG, estadoAux)
+            delay(1000)
+            estadoAux = EstadosAuxiliares.AUX4.txt
+            setCuentaAtras(estadoAux)
+            Log.d(TAG_LOG, estadoAux)
+            delay(1000)
+            estadoAux = EstadosAuxiliares.AUX5.txt
+            comprobarCuenta(estadoAux)
+            setCuentaAtras(estadoAux)
+            Log.d(TAG_LOG, estadoAux)
+            delay(1000)
+        }
+    }
+
+    fun setCuentaAtras(cuentaAux: String) {
+        Datos.cuenta = cuentaAux
+        _cuentaAtrasLiveData.value = Datos.cuenta
+    }
+
+    fun getCuertaAtras(): String {
+        return Datos.cuenta
     }
 }

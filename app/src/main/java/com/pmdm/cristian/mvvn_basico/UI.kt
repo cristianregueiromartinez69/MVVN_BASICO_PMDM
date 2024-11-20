@@ -15,12 +15,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,8 +36,8 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun IU(miViewModel: MyViewModel) {
-    // para que sea mas facil la etiqueta del log
-    // val TAG_LOG = "miDebug"
+
+    val cuentaAtras by miViewModel.cuentaAtrasLiveData.observeAsState(miViewModel.getCuertaAtras())
 
     // botones en horizontal
     Column(
@@ -56,6 +59,9 @@ fun IU(miViewModel: MyViewModel) {
 
                 // creo un boton amarillo
                 Boton(miViewModel, Colores.CLASE_AMARILLO)
+            }
+            Row {
+                ShowCuentaAtras(cuentaAtras)
             }
         }
         // creao boton Start
@@ -94,6 +100,23 @@ fun Boton(miViewModel: MyViewModel, enum_color: Colores) {
         // utilizamos el texto del enum
         Text(text = enum_color.txt, fontSize = 10.sp)
     }
+}
+
+@Composable
+fun ShowCuentaAtras(cuenta:String){
+    Column(verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .padding(top = 46.dp, start = 10.dp)
+    ) {
+
+        Text(text = "Cuenta Atras: $cuenta" ,
+            fontSize = 21.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black)
+
+    }
+
 }
 
 @Composable

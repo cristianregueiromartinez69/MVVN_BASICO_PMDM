@@ -45,18 +45,14 @@ class MyViewModel(): ViewModel() {
     /**
      * crear entero random
      */
-    fun crearRandom(cuentaAtras: String) {
+    fun crearRandom() {
         estadosAuxiliares()
         // cambiamos estado, por lo tanto la IU se actualiza
         estadoLiveData.value = Estados.GENERANDO
         _numbers.value = (0..3).random()
         Log.d(TAG_LOG, "creamos random ${_numbers.value} - Estado: ${estadoLiveData.value}")
         actualizarNumero(_numbers.value)
-        Log.d("CuentaAtras", cuentaAtras)
-        if(cuentaAtras == "1"){
-            Log.d(TAG_LOG, "no es correcto en cuenta atras")
-            estadoLiveData.value = Estados.INICIO
-        }
+
     }
 
     fun actualizarNumero(numero: Int) {
@@ -85,6 +81,13 @@ class MyViewModel(): ViewModel() {
         }
     }
 
+    fun comprobarCuenta(cuentaAtras: String){
+        if(cuentaAtras == "1"){
+            Log.d(TAG_LOG, "no es correcto en cuenta atras")
+            estadoLiveData.value = Estados.INICIO
+        }
+    }
+
     /**
      * Corutina que lanza estados auxiliares
      */
@@ -109,6 +112,7 @@ class MyViewModel(): ViewModel() {
             Log.d(TAG_LOG, estadoAux)
             delay(1000)
             estadoAux = EstadosAuxiliares.AUX5.txt
+            comprobarCuenta(estadoAux)
             setCuentaAtras(estadoAux)
             Log.d(TAG_LOG, estadoAux)
             delay(1000)

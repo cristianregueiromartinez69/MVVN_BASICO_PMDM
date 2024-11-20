@@ -65,7 +65,7 @@ fun IU(miViewModel: MyViewModel) {
             }
         }
         // creao boton Start
-        Boton_Start(miViewModel, Colores.CLASE_START, cuentaAtras)
+        Boton_Start(miViewModel, Colores.CLASE_START)
     }
 }
 
@@ -120,7 +120,7 @@ fun ShowCuentaAtras(cuenta:String){
 }
 
 @Composable
-fun Boton_Start(miViewModel: MyViewModel, enum_color: Colores, cuentaAtras: String) {
+fun Boton_Start(miViewModel: MyViewModel, enum_color: Colores) {
 
     // para que sea mas facil la etiqueta del log
     val TAG_LOG = "miDebug"
@@ -161,7 +161,7 @@ fun Boton_Start(miViewModel: MyViewModel, enum_color: Colores, cuentaAtras: Stri
         colors = ButtonDefaults.buttonColors(_color),
         onClick = {
             Log.d(TAG_LOG, "Dentro del Start - Estado: ${miViewModel.estadoLiveData.value!!.name}")
-            miViewModel.crearRandom(cuentaAtras)
+            miViewModel.crearRandom()
         },
         modifier = Modifier
             .size((100).dp, (40).dp)

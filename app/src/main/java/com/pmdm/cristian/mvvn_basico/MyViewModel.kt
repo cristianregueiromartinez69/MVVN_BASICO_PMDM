@@ -87,25 +87,34 @@ class MyViewModel(): ViewModel() {
         viewModelScope.launch {
             // guardamos el estado auxiliar
             var estadoAux = EstadosAuxiliares.AUX1.txt
+            setCuentaAtras(estadoAux)
             // hacemos un cambio a tres estados auxiliares
             Log.d(TAG_LOG, estadoAux)
             delay(1000)
             estadoAux = EstadosAuxiliares.AUX2.txt
+            setCuentaAtras(estadoAux)
             Log.d(TAG_LOG, estadoAux)
             delay(1000)
             estadoAux = EstadosAuxiliares.AUX3.txt
+            setCuentaAtras(estadoAux)
             Log.d(TAG_LOG, estadoAux)
             delay(1000)
             estadoAux = EstadosAuxiliares.AUX4.txt
+            setCuentaAtras(estadoAux)
             Log.d(TAG_LOG, estadoAux)
             delay(1000)
             estadoAux = EstadosAuxiliares.AUX5.txt
+            setCuentaAtras(estadoAux)
             Log.d(TAG_LOG, estadoAux)
         }
     }
 
     fun setCuentaAtras(cuentaAux: String) {
         Datos.cuenta = cuentaAux
+        _cuentaAtrasLiveData.value = Datos.cuenta
+    }
 
+    fun getCuertaAtras(): String {
+        return Datos.cuenta
     }
 }

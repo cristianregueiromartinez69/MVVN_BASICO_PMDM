@@ -20,6 +20,8 @@ class MyViewModel(): ViewModel() {
     // patron de diseño observer
     val estadoLiveData: MutableLiveData<Estados> = MutableLiveData(Estados.INICIO)
 
+
+
     // este va a ser nuestra lista para la secuencia random
     // usamos mutable, ya que la queremos modificar
     var _numbers = mutableStateOf(0)
@@ -34,6 +36,7 @@ class MyViewModel(): ViewModel() {
      * crear entero random
      */
     fun crearRandom() {
+        estadosAuxiliares()
         // cambiamos estado, por lo tanto la IU se actualiza
         estadoLiveData.value = Estados.GENERANDO
         _numbers.value = (0..3).random()
@@ -85,7 +88,10 @@ class MyViewModel(): ViewModel() {
             estadoAux = EstadosAuxiliares.AUX3
             Log.d(TAG_LOG, "estado (corutina): ${estadoAux}")
             delay(1000)
-            estadoAux = EstadosAuxiliares.AUX2
+            estadoAux = EstadosAuxiliares.AUX4
+            Log.d(TAG_LOG, "estado (corutina): ${estadoAux}")
+            delay(1000)
+            estadoAux = EstadosAuxiliares.AUX5
             Log.d(TAG_LOG, "estado (corutina): ${estadoAux}")
         }
     }

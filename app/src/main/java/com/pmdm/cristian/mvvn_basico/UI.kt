@@ -38,6 +38,7 @@ fun IU(miViewModel: MyViewModel) {
     // para que sea mas facil la etiqueta del log
     // val TAG_LOG = "miDebug"
 
+
     // botones en horizontal
     Column(
         modifier= Modifier.fillMaxWidth().fillMaxHeight().padding(20.dp),

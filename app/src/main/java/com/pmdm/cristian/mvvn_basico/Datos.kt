@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
  */
 object Datos {
     var numero = 0
+    var cuenta = ""
 }
 
 /**

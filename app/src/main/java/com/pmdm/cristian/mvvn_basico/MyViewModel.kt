@@ -15,10 +15,18 @@ class MyViewModel(): ViewModel() {
     // etiqueta para logcat
     private val TAG_LOG = "miDebug"
 
+    private var _palabraJugadorLiveData = MutableLiveData<String>()
+    val palabraJugadorLiveData : LiveData<String> get() = _palabraJugadorLiveData
+
     // estados del juego
     // usamos LiveData para que la IU se actualice
     // patron de diseño observer
     val estadoLiveData: MutableLiveData<Estados> = MutableLiveData(Estados.INICIO)
+
+
+    init {
+
+    }
 
 
 

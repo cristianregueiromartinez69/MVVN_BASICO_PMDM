@@ -43,5 +43,4 @@ enum class EstadosAuxiliares(val txt: String) {
     AUX3(txt = "3"),
     AUX4(txt = "2"),
     AUX5(txt = "1"),
-    AUX6(txt = "0"),
 }

@@ -66,17 +66,21 @@ class MyViewModel(): ViewModel() {
      */
     fun comprobar(ordinal: Int): Boolean {
 
-        Log.d(TAG_LOG, "comprobamos - Estado: ${estadoLiveData.value}")
-        return if (ordinal == Datos.numero) {
+        if(getCuertaAtras().toIntOrNull() == 1){
+            Log.d(TAG_LOG, "no es correcto en cuenta atras")
+            estadoLiveData.value = Estados.INICIO
+            return false
+        }
+        else if (ordinal == Datos.numero) {
             Log.d(TAG_LOG, "es correcto")
             estadoLiveData.value = Estados.INICIO
-            Log.d(TAG_LOG, "GANAMOS - Estado: ${estadoLiveData.value}")
-            true
-        } else {
+           return  true
+        }
+
+        else {
             Log.d(TAG_LOG, "no es correcto")
             estadoLiveData.value = Estados.ADIVINANDO
-            Log.d(TAG_LOG, "otro intento - Estado: ${estadoLiveData.value}")
-            false
+           return  false
         }
     }
 
@@ -104,10 +108,6 @@ class MyViewModel(): ViewModel() {
             Log.d(TAG_LOG, estadoAux)
             delay(1000)
             estadoAux = EstadosAuxiliares.AUX5.txt
-            setCuentaAtras(estadoAux)
-            Log.d(TAG_LOG, estadoAux)
-            delay(1000)
-            estadoAux = EstadosAuxiliares.AUX6.txt
             setCuentaAtras(estadoAux)
             Log.d(TAG_LOG, estadoAux)
             delay(1000)

@@ -69,12 +69,14 @@ class MyViewModel(): ViewModel() {
      */
     fun comprobar(ordinal: Int): Boolean {
         if (ordinal == Datos.numero) {
+            estadoAux = EstadosAuxiliares.AUX6.txt
             Log.d(TAG_LOG, "es correcto")
             estadoLiveData.value = Estados.INICIO
            return  true
         }
 
         else {
+            estadoAux = EstadosAuxiliares.AUX6.txt
             Log.d(TAG_LOG, "no es correcto")
             estadoLiveData.value = Estados.ADIVINANDO
            return  false
@@ -83,10 +85,13 @@ class MyViewModel(): ViewModel() {
 
     fun comprobarCuenta(cuentaAtras: String){
         if(cuentaAtras == "1"){
+            estadoAux = EstadosAuxiliares.AUX6.txt
             Log.d(TAG_LOG, "no es correcto en cuenta atras")
             estadoLiveData.value = Estados.INICIO
         }
+
     }
+
 
     /**
      * Corutina que lanza estados auxiliares

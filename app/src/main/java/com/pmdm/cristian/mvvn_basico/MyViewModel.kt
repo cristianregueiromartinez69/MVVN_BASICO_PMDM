@@ -18,6 +18,8 @@ class MyViewModel(): ViewModel() {
     private var _cuentaAtrasLiveData = MutableLiveData<String>()
     val cuentaAtrasLiveData : LiveData<String> get() = _cuentaAtrasLiveData
 
+    var estadoAux = EstadosAuxiliares.AUX1.txt
+
     // estados del juego
     // usamos LiveData para que la IU se actualice
     // patron de diseño observer
@@ -43,13 +45,18 @@ class MyViewModel(): ViewModel() {
     /**
      * crear entero random
      */
-    fun crearRandom() {
+    fun crearRandom(cuentaAtras: String) {
         estadosAuxiliares()
         // cambiamos estado, por lo tanto la IU se actualiza
         estadoLiveData.value = Estados.GENERANDO
         _numbers.value = (0..3).random()
         Log.d(TAG_LOG, "creamos random ${_numbers.value} - Estado: ${estadoLiveData.value}")
         actualizarNumero(_numbers.value)
+        Log.d("CuentaAtras", cuentaAtras)
+        if(cuentaAtras == "1"){
+            Log.d(TAG_LOG, "no es correcto en cuenta atras")
+            estadoLiveData.value = Estados.INICIO
+        }
     }
 
     fun actualizarNumero(numero: Int) {
@@ -65,13 +72,7 @@ class MyViewModel(): ViewModel() {
      * @return Boolean si coincide TRUE, si no FALSE
      */
     fun comprobar(ordinal: Int): Boolean {
-
-        if(getCuertaAtras().toIntOrNull() == 1){
-            Log.d(TAG_LOG, "no es correcto en cuenta atras")
-            estadoLiveData.value = Estados.INICIO
-            return false
-        }
-        else if (ordinal == Datos.numero) {
+        if (ordinal == Datos.numero) {
             Log.d(TAG_LOG, "es correcto")
             estadoLiveData.value = Estados.INICIO
            return  true
@@ -90,7 +91,7 @@ class MyViewModel(): ViewModel() {
     fun estadosAuxiliares() {
         viewModelScope.launch {
             // guardamos el estado auxiliar
-            var estadoAux = EstadosAuxiliares.AUX1.txt
+            estadoAux = EstadosAuxiliares.AUX1.txt
             setCuentaAtras(estadoAux)
             // hacemos un cambio a tres estados auxiliares
             Log.d(TAG_LOG, estadoAux)

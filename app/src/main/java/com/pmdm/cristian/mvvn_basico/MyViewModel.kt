@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MyViewModel(): ViewModel() {
@@ -75,16 +76,17 @@ class MyViewModel(): ViewModel() {
         viewModelScope.launch {
             // guardamos el estado auxiliar
             var estadoAux = EstadosAuxiliares.AUX1
-
             // hacemos un cambio a tres estados auxiliares
             Log.d(TAG_LOG, "estado (corutina): ${estadoAux}")
-            delay(1500)
+            delay(1000)
             estadoAux = EstadosAuxiliares.AUX2
             Log.d(TAG_LOG, "estado (corutina): ${estadoAux}")
-            delay(1500)
+            delay(1000)
             estadoAux = EstadosAuxiliares.AUX3
             Log.d(TAG_LOG, "estado (corutina): ${estadoAux}")
-            delay(1500)
+            delay(1000)
+            estadoAux = EstadosAuxiliares.AUX2
+            Log.d(TAG_LOG, "estado (corutina): ${estadoAux}")
         }
     }
 }

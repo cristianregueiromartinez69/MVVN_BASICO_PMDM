@@ -37,7 +37,9 @@ enum class Estados(val start_activo: Boolean, val boton_activo: Boolean) {
  * @param txt: String nombre del estado
  */
 enum class EstadosAuxiliares(val txt: String) {
-    AUX1(txt = "aux1"),
-    AUX2(txt = "aux2"),
-    AUX3(txt = "aux3"),
+    AUX1(txt = "5"),
+    AUX2(txt = "4"),
+    AUX3(txt = "3"),
+    AUX4(txt = "2"),
+    AUX5(txt = "1")
 }
